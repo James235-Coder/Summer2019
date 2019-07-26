@@ -83,6 +83,47 @@ Today, we learned about git branches.
 
 }
  }
- 
+
+@blog-post["Day 9"]{
+Today, we added a "How To Add Your Blog" section to Tips&Tactics. We also added 3 tactics to the tactics-variances "a" page.}
+
+@blog-post["Day 10"]
+{Code the letter T.
+@codeblock{(add-line (line 100 0 "black") 50 0 50 50 "outline")}}
+{Code a stick figure
+@codeblock{
+(define (head)
+  (circle 30 "outline" "black"))
+(define (body)
+  (add-line(head) 30 60 30 200 "black"))
+(define (arms)
+  (add-line (body) 0 100 70 100 "black"))
+(define (legs)
+  (add-line(add-line(arms)
+                    30 200 10 240 "black")
+                         30 200 50 240 "black"))
+(define (stick-person)
+  (legs))  
+(stick-person)
+}}
+
+@blog-post["Day 10"]
+Today, we made an animation of a flower that changed colors.
+@codeblock{(define (shape tick)
+  (pulled-regular-polygon 50 5 1 140 "solid" (find-color tick)))
+
+(define (find-color tick)
+  (cond ((< (modulo tick 60) 10) "red")
+         ((< (modulo tick 60) 20) "orange")
+         ((< (modulo tick 60) 30) "yellow")
+         ((< (modulo tick 60) 40) "green")
+         ((< (modulo tick 60) 50) "blue")
+           ("purple")))
+
+(big-bang 100
+  (on-tick sub1)
+  (to-draw shape))}
+
+
 }
 

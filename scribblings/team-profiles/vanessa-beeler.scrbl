@@ -4,13 +4,19 @@
           ts-tactics
           ts-tactics/tactics/tactic-library/disintegrating-code
           "../new-tactics/disintegrating-code-no-peeking.rkt"
-          "../new-tactics/no-peeking.rkt")
+          "../new-tactics/no-peeking.rkt"
+          2htdp/image)
 
 @(bio "Vanessa Beeler" 
       "vanessa_picture_new.png"
       "I started coding my senior year of high school in AP Computer Science. I just
        finished the intro series of CS classes during my freshman year at Cal Poly SLO.
        I know Python as well as a little bit of Java.")
+
+@(define face (circle 100 "solid" "gold"))
+@(define eye (overlay/offset (circle 10 "solid" "black") 0 20
+                     (circle 30 "solid" "white")))
+@(define mouth (line 40 0 (pen "goldenrod" 20 "solid" "round" "round")))
 
 @blog{
 
@@ -72,5 +78,52 @@ the tactic is the same as disintegrating code.
 DISINTEGRATING CODE (NO PEEKING VERSION)
 
 @(no-peeking)
+}
+
+@blog-post["Day 5"]{
+New Kata
+
+Today we worked on making a new kata for the kids to work on, using the fundamentals language. Below is the code
+for the kata that we made, which makes an emoji that is rolling its eyes.
+
+@codeblock{(define face (circle 100 "solid" "gold"))
+(define eye (overlay/offset (circle 10 "solid" "black") 0 20
+                     (circle 30 "solid" "white")))
+(define mouth (line 40 0 (pen "goldenrod" 20 "solid" "round" "round")))
+(overlay/offset mouth 0 -50 (overlay/offset eye -40 20 (overlay/offset eye 40 20 face)))}
+
+@(overlay/offset mouth 0 -50 (overlay/offset eye -40 20 (overlay/offset eye 40 20 face)))
+}
+
+@blog-post["Day 6"]{
+Today we worked with 2htdp/universe in order to animate our images.
+}
+
+@blog-post["Day 7"]{
+Today we continued working with 2htdp/universe, making animations with objects of our choosing. Below is the code
+that I wrote for a polygon that looks like a flower to continually change colors between those in the rainbow, which
+travels in a circle.
+
+@codeblock{(define (shape tick)
+  (overlay/offset (pulled-regular-polygon 50 5 1 140 "solid" (find-color tick)) (find-x tick) (find-y tick)
+              (square 400 "solid" "white")))
+
+(define (find-color tick)
+  (cond ((< (modulo tick 60) 10) "red")
+        ((< (modulo tick 60) 20) "orange")
+        ((< (modulo tick 60) 30) "yellow")
+        ((< (modulo tick 60) 40) "green")
+        ((< (modulo tick 60) 50) "blue")
+        ("purple")))
+
+(define (find-x tick)
+  (* 100 (cos (* .1 tick))))
+
+(define (find-y tick)
+  (* 100 (sin (* .1 tick))))
+
+(big-bang 0
+  (on-tick add1)
+  (to-draw shape))}
 }
 }

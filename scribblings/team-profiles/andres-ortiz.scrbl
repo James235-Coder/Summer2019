@@ -1,0 +1,43 @@
+#lang scribble/manual
+
+@(require "./common.rkt"
+          2htdp/image)
+
+@require[@for-label[Summer2019
+                    racket/base]]
+
+@(define face (circle 100 "solid" "gold"))
+@(define eye (overlay/offset (circle 10 "solid" "black") 0 20
+                     (circle 30 "solid" "white")))
+@(define mouth (line 40 0 (pen "goldenrod" 20 "solid" "round" "round")))
+
+@(bio "Andres Ortiz"
+      "andres-ortiz.png"
+      "I attend the University of California, Davis. I am a third-year computer engineering major.")
+
+@blog{
+
+@blog-post["Personal Philosophy"]{
+                                  "I strive towards becoming a software developer. It has always been a dream of mine."}
+
+@blog-post["Day 1"]{
+                    "Today I worked on the back-end of programming involving 2htdp/image. I implemented my bio into the team files and created a new kata for
+  uniqye educational curriculum. The new kata involves creating a rolling-eyes emoji similar to the one found in iPhones."
+
+@codeblock{(define face (circle 100 "solid" "gold"))
+(define eye (overlay/offset (circle 10 "solid" "black") 0 20
+                     (circle 30 "solid" "white")))
+(define mouth (line 40 0 (pen "goldenrod" 20 "solid" "round" "round")))
+(overlay/offset mouth 0 -50 (overlay/offset eye -40 20 (overlay/offset eye 40 20 face)))}
+
+@(overlay/offset mouth 0 -50 (overlay/offset eye -40 20 (overlay/offset eye 40 20 face)))
+}
+
+@blog-post["Day 2"]{
+                    "I stepped up and worked on managerial tasks such as finding issues on the ThoughtSTEM repositiory and providing tickets for other interns to fix. It was a great
+                    experience to manage a group of fellow engineering interns which I believe will give me an idea of what I will be able accomplish throughout my career."}
+
+@blog-post["Day 3"]{
+                    "I continued the same job assignment I had on Day 2 while also increasing my knowledge about Github. The Managerial Team decided to create katas regarding images and animations.
+                    The team agreed that memes and GIFs would be an interesting kata that a appeals to a wide age group. I took it upon myself to provide assets for GIFs, but have yet to figure out
+                    if we can utilize it using fundamentals lang.}}
